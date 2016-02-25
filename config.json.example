@@ -1,6 +1,6 @@
 {
   "sites":[
-    "google.de",
-    "facebook.com"
+    "http://google.de",
+    "http://facebook.com"
   ]
 }
