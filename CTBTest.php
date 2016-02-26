@@ -12,7 +12,7 @@ class CTBTest extends PHPUnit_Framework_TestCase
 
     const FILENAME = "config.json";
 
-    private function load()
+    private function loadCfg()
     {
         $content =file_get_contents(self::FILENAME);
         return json_decode($content, true)['sites'];
@@ -20,13 +20,15 @@ class CTBTest extends PHPUnit_Framework_TestCase
 
 
     public function test(){
-        $sites = $this->load();
+        $sites = $this->loadCfg();
         foreach($sites as $url){
-            $content = file_get_contents($url);
-            $this->assertFalse(strstr($content, "CTB"));
-        }
+            $content = file_get_contents($url['url']);
+            foreach($url['expectedStrings'] as $string){
 
-        $this->assertTrue(true);
+                $this->assertTrue(strstr($content, $string)!==false, "String {$string} ist nicht in Seite {$url['url']} vorhanden");
+            }
+            $this->assertFalse(strstr($content, "CTB"), " CTB kommt auf der Webseite {$url['url']} vor.");
+        }
     }
 
 }

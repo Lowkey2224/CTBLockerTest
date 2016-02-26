@@ -1,6 +1,12 @@
 {
   "sites":[
-    "http://google.de",
-    "http://facebook.com"
+    {
+      "url":"http://google.de",
+      "expectedStrings":["google"]
+    },
+    {
+      "url":"http://facebook.com",
+      "expectedStrings":["facebook"]
+    }
   ]
 }
